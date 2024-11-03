@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Page from "@/components/Page";
 import {
   useGetUsersQuery,
@@ -21,6 +21,12 @@ const UsersPage = () => {
     setDataId(Number(valueId));
     setIsOpen(true);
   };
+
+  useEffect(() => {
+    if (!isOpen) {
+      setDataId(undefined);
+    }
+  }, [isOpen]);
 
   return (
     <>
@@ -46,11 +52,13 @@ const UsersPage = () => {
           onDeleteAction={handleDelete}
         />
       </Page>
-      <ModalUserProcess
-        isOpen={isOpen}
-        onClose={() => setIsOpen(!isOpen)}
-        dataId={dataId}
-      />
+      {isOpen && (
+        <ModalUserProcess
+          isOpen={isOpen}
+          onClose={() => setIsOpen(!isOpen)}
+          dataId={dataId}
+        />
+      )}
     </>
   );
 };

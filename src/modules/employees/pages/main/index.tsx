@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Page from "@/components/Page";
 import {
   useFetchEmployeesQuery,
@@ -21,6 +21,12 @@ const EmployeePage = () => {
     setDataId(Number(valueId));
     setIsOpen(true);
   };
+
+  useEffect(() => {
+    if (!isOpen) {
+      setDataId(undefined);
+    }
+  }, [isOpen]);
 
   return (
     <Page
@@ -45,11 +51,13 @@ const EmployeePage = () => {
         onViewAction={handleView}
         onDeleteAction={handleDelete}
       />
-      <ModalEmployeeProcess
-        isOpen={isOpen}
-        onClose={() => setIsOpen(!isOpen)}
-        dataId={dataId}
-      />
+      {isOpen && (
+        <ModalEmployeeProcess
+          isOpen={isOpen}
+          onClose={() => setIsOpen(!isOpen)}
+          dataId={dataId}
+        />
+      )}
     </Page>
   );
 };

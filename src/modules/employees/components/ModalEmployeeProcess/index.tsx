@@ -11,6 +11,7 @@ import {
 } from "../../services/employeesApiSlice";
 import { toast } from "react-toastify";
 import InputText from "@/components/InputText";
+import { validateInput } from "@/utils/inputValidation";
 
 interface ModalProps {
   forViewOnly?: boolean;
@@ -53,6 +54,26 @@ const ModalEmployeeProcess = ({
     setEmployeeForm({
       ...employeeForm,
       [e.target.name as string]: e.target.value
+    });
+  };
+
+  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmployeeForm({
+      ...employeeForm,
+      [e.target.name as string]: validateInput(e.target.value, "phone")
+    });
+  };
+  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmployeeForm({
+      ...employeeForm,
+      [e.target.name as string]: validateInput(e.target.value, "name")
+    });
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmployeeForm({
+      ...employeeForm,
+      [e.target.name as string]: validateInput(e.target.value, "email")
     });
   };
 
@@ -99,28 +120,28 @@ const ModalEmployeeProcess = ({
           label="Initial Name"
           placeholder="Initial Name"
           name="initialName"
-          onChange={handleChange}
+          onChange={handleTextChange}
           value={employeeForm?.initialName}
         />
         <InputText
           label="Last Name"
           placeholder="Last Name"
           name="lastName"
-          onChange={handleChange}
+          onChange={handleTextChange}
           value={employeeForm?.lastName}
         />
         <InputText
           label="Email"
           placeholder="Email"
           name="email"
-          onChange={handleChange}
+          onChange={handleEmailChange}
           value={employeeForm?.email}
         />
         <InputText
           label="Phone Number"
           placeholder="Phone Number"
           name="mobilePhoneNumber"
-          onChange={handleChange}
+          onChange={handlePhoneNumberChange}
           value={employeeForm?.mobilePhoneNumber}
         />
         <InputText
@@ -135,10 +156,12 @@ const ModalEmployeeProcess = ({
           toggle={toggleGender}
         />
       </div>
-      <AddEmployeeLeave
-        employeeId={dataId as number}
-        paidLeaveList={employee?.employeeLeaves || []}
-      />
+      {dataId && (
+        <AddEmployeeLeave
+          employeeId={dataId as number}
+          paidLeaveList={employee?.employeeLeaves || []}
+        />
+      )}
     </ModalDialog>
   );
 };

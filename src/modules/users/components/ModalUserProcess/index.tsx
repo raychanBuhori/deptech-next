@@ -12,6 +12,7 @@ import {
 import { toast } from "react-toastify";
 import moment from "moment";
 import InputText from "@/components/InputText";
+import { validateInput } from "@/utils/inputValidation";
 
 interface ModalProps {
   forViewOnly?: boolean;
@@ -46,6 +47,20 @@ const ModalUserProcess = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserForm({ ...userForm, [e.target.name as string]: e.target.value });
+  };
+
+  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserForm({
+      ...userForm,
+      [e.target.name as string]: validateInput(e.target.value, "name")
+    });
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserForm({
+      ...userForm,
+      [e.target.name as string]: validateInput(e.target.value, "email")
+    });
   };
 
   const toggleGender = () => {
@@ -118,21 +133,22 @@ const ModalUserProcess = ({
           label="Initial Name"
           placeholder="Initial Name"
           name="initialName"
-          onChange={handleChange}
+          onChange={handleTextChange}
           value={userForm?.initialName}
         />
         <InputText
           label="Last Name"
           placeholder="Last Name"
           name="lastName"
-          onChange={handleChange}
+          onChange={handleTextChange}
           value={userForm?.lastName}
         />
         <InputText
+          type="email"
           label="Email"
           placeholder="Email"
           name="email"
-          onChange={handleChange}
+          onChange={handleEmailChange}
           value={userForm?.email}
         />
         <div className="flex flex-col gap-2">
@@ -148,6 +164,7 @@ const ModalUserProcess = ({
           toggle={toggleGender}
         />
         <InputText
+          type="password"
           label="Password"
           placeholder="Password"
           name="password"
