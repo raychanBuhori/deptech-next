@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Users",
+    "path": "/users",
+    "icon": "users"
+  },
+  {
+    "name": "Employees",
+    "path": "/employees",
+    "icon": "Employees"
+  }
+]

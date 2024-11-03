@@ -1,0 +1,33 @@
+/* components/Sidebar.module.css */
+.sidebar {
+  width: 250px;
+  background-color: var(--secondary-color);
+  color: white;
+  height: 100vh;
+  padding: 20px;
+  position: fixed;
+
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  nav ul li {
+    margin: 15px 0;
+  }
+
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  nav ul li a:hover {
+    color: #3498db; /* Highlight color on hover */
+  }
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
