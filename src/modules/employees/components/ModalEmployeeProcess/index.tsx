@@ -10,6 +10,7 @@ import {
   useAddEmployeeMutation
 } from "../../services/employeesApiSlice";
 import { toast } from "react-toastify";
+import InputText from "@/components/InputText";
 
 interface ModalProps {
   forViewOnly?: boolean;
@@ -94,31 +95,36 @@ const ModalEmployeeProcess = ({
       submitText={employee?.email ? "Update" : "Create"}
     >
       <div className="grid grid-cols-2 gap-4">
-        <Input
+        <InputText
+          label="Initial Name"
           placeholder="Initial Name"
           name="initialName"
           onChange={handleChange}
           value={employeeForm?.initialName}
         />
-        <Input
+        <InputText
+          label="Last Name"
           placeholder="Last Name"
           name="lastName"
           onChange={handleChange}
           value={employeeForm?.lastName}
         />
-        <Input
+        <InputText
+          label="Email"
           placeholder="Email"
           name="email"
           onChange={handleChange}
           value={employeeForm?.email}
         />
-        <Input
+        <InputText
+          label="Phone Number"
           placeholder="Phone Number"
           name="mobilePhoneNumber"
           onChange={handleChange}
           value={employeeForm?.mobilePhoneNumber}
         />
-        <Input
+        <InputText
+          label="Address"
           placeholder="Address"
           name="address"
           onChange={handleChange}

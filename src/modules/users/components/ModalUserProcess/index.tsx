@@ -1,7 +1,7 @@
 import { useState, useEffect, use } from "react";
 import ModalDialog from "@/components/ModalDialog";
 import { User } from "../../services/usersApiSlice";
-import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { PopDatePicker } from "@/components/PopDatePicker";
 import GenderSwitch from "@/components/GenderSwitch";
 import {
@@ -11,6 +11,7 @@ import {
 } from "../../services/usersApiSlice";
 import { toast } from "react-toastify";
 import moment from "moment";
+import InputText from "@/components/InputText";
 
 interface ModalProps {
   forViewOnly?: boolean;
@@ -113,33 +114,41 @@ const ModalUserProcess = ({
       submitText={user?.email ? "Update" : "Create"}
     >
       <div className="grid grid-cols-2 gap-4">
-        <Input
+        <InputText
+          label="Initial Name"
           placeholder="Initial Name"
           name="initialName"
           onChange={handleChange}
           value={userForm?.initialName}
         />
-        <Input
+        <InputText
+          label="Last Name"
           placeholder="Last Name"
           name="lastName"
           onChange={handleChange}
           value={userForm?.lastName}
         />
-        <Input
+        <InputText
+          label="Email"
           placeholder="Email"
           name="email"
           onChange={handleChange}
           value={userForm?.email}
         />
-        <PopDatePicker
-          currentDate={userForm?.birthDate}
-          applyDate={applyDate}
-        />
+        <div className="flex flex-col gap-2">
+          <Label>Birth Date</Label>
+          <PopDatePicker
+            currentDate={userForm?.birthDate}
+            applyDate={applyDate}
+          />
+        </div>
+
         <GenderSwitch
           isChecked={userForm?.gender?.toUpperCase() === "FEMALE"}
           toggle={toggleGender}
         />
-        <Input
+        <InputText
+          label="Password"
           placeholder="Password"
           name="password"
           onChange={handleChange}

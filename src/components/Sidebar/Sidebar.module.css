@@ -20,6 +20,7 @@
     color: white;
     text-decoration: none;
     transition: color 0.3s;
+    font-weight: 700;
   }
 
   nav ul li a:hover {

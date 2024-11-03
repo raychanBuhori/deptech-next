@@ -19,7 +19,7 @@ const Page: React.FC<PageProps> = ({
   return (
     <div className={styles.pageContainer}>
       <div className={styles.pageHeader}>
-        <h1>{headerText}</h1>
+        <h1 className={styles.headerText}>{headerText}</h1>
         {showHeaderButton && onHeaderButtonClick && (
           <Button onClick={onHeaderButtonClick}>{headerButtonText}</Button>
         )}

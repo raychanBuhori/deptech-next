@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import TableLayout from "@/components/TableLayout";
 import { toast } from "react-toastify";
+import InputText from "@/components/InputText";
 
 const AddEmployeeLeave = ({
   employeeId,
@@ -116,7 +117,8 @@ const AddEmployeeLeave = ({
             }
           />
         </div>
-        <Input
+        <InputText
+          label="Reason"
           disabled={eligibleToAddLeave}
           type="text"
           name="reason"
